@@ -95,8 +95,7 @@ class JobItemDetailsRoute extends Component {
         similarJobs: formattedSimilarJobDetails,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -113,12 +112,14 @@ class JobItemDetailsRoute extends Component {
     <div className="product-details-failure-view-container">
       <img
         alt="failure view"
-        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png "
+        className="failure-view-image"
       />
-      <h1 className="product-not-found-heading">Jobs Not Found</h1>
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We cannot seem to find the page you are looking for</p>
       <Link to="/jobs">
         <button type="button" className="button">
-          Continue Searching
+          Retry
         </button>
       </Link>
     </div>
@@ -150,26 +151,34 @@ class JobItemDetailsRoute extends Component {
           <p>{packagePerAnnum}</p>
           <p>{rating}</p>
           <a href={companyWebsiteUrl}>Visit</a>
-          <h1>Skills</h1>
-          {skills.map(eachSkill => (
-            <div>
-              <img src={eachSkill.imageUrl} alt={eachSkill.name} />
-              <h1>{eachSkill.name}</h1>
-            </div>
-          ))}
-          <h1>Life At Company</h1>
-          <p>{lifeAtCompany.description}</p>
-          <img src={lifeAtCompany.imageUrl} alt="life at company" />
-        </div>
-        <h1>Similar Jobs</h1>
-        <div>
           <ul>
-            {similarJobs.map(eachSimilarJob => (
-              <SimilarJobsSection
-                details={eachSimilarJob}
-                key={eachSimilarJob.id}
-              />
-            ))}
+            <li key="skills">
+              <h1>Skills</h1>
+              <ul>
+                {skills.map(eachSkill => (
+                  <li key={eachSkill.name}>
+                    <img src={eachSkill.imageUrl} alt={eachSkill.name} />
+                    <h1>{eachSkill.name}</h1>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            <li key="life">
+              <h1>Life At Company</h1>
+              <p>{lifeAtCompany.description}</p>
+              <img src={lifeAtCompany.imageUrl} alt="life at company" />
+              <h1>Similar Jobs</h1>
+              <div>
+                <ul>
+                  {similarJobs.map(eachSimilarJob => (
+                    <SimilarJobsSection
+                      details={eachSimilarJob}
+                      key={eachSimilarJob.id}
+                    />
+                  ))}
+                </ul>
+              </div>
+            </li>
           </ul>
         </div>
       </div>

@@ -11,7 +11,7 @@ const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
-  searchFailure: 'SEARCHFAILURE',
+  searchFailure: 'SEARCH_FAILURE',
   inProgress: 'IN_PROGRESS',
 }
 const employmentTypesList = [
@@ -84,21 +84,22 @@ class JobsRoute extends Component {
     }
   }
 
-  renderSearchFailure = () => (
-    <div className="product-details-failure-view-container">
-      <img
-        alt="no jobs"
-        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
-      />
-      <h1>No Jobs Found</h1>
-      <p>We could not find any jobs. Try other filters</p>
-      <Link to="/products">
-        <button type="button" className="button">
+  renderSearchFailure = () => {
+    console.log('SEARCH')
+    return (
+      <div className="product-details-failure-view-container">
+        <img
+          alt="no jobs"
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        />
+        <h1>No Jobs Found</h1>
+        <p>We could not find any jobs. Try other filters</p>
+        <button type="button" className="button" onClick={this.clearFilters}>
           Retry
         </button>
-      </Link>
-    </div>
-  )
+      </div>
+    )
+  }
 
   getFormattedData = data => ({
     profileDetails: data.profile_details,
@@ -130,9 +131,21 @@ class JobsRoute extends Component {
 
     const response = await fetch(jobsApiUrl, options)
     const response2 = await fetch(profileApiUrl, options)
+    let flag = 0
+    let data1 = []
     if (response.ok === true && response2.ok === true) {
       const data = await response.json()
-      const updatedData = data.jobs.map(job => ({
+      data1 = data
+      console.log(data.total)
+      if (data.total === 0) {
+        flag = 1
+        this.setState({
+          apiStatus: apiStatusConstants.searchFailure,
+        })
+      }
+    }
+    if (flag === 0) {
+      const updatedData = data1.jobs.map(job => ({
         title: job.title,
         id: job.id,
         imageUrl: job.company_logo_url,
@@ -152,12 +165,8 @@ class JobsRoute extends Component {
         profileDetails: updatedData2,
         apiStatus: apiStatusConstants.success,
       })
-    } else {
-      this.setState({
-        apiStatus: apiStatusConstants.searchFailure,
-      })
     }
-    if (response.status === 404) {
+    if (response.ok === false || response2.ok === false) {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -169,11 +178,10 @@ class JobsRoute extends Component {
       <img
         alt="failure view"
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png "
-        className="failure-view-image"
       />
       <h1>Oops! Something Went Wrong</h1>
       <p>We cannot seem to find the page you are looking for</p>
-      <Link to="/products">
+      <Link to="/jobs">
         <button type="button" className="button">
           Retry
         </button>
