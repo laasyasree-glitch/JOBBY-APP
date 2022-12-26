@@ -1,0 +1,23 @@
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 2%;
+}
+.alignment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ul {
+  list-style-type: none;
+}
+.profile-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  color: #6366f1;
+  width: 100%;
+  padding: 10%;
+}
+.bg-main {
+  background-color: #000000;
+}

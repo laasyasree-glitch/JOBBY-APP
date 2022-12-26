@@ -1,4 +1,4 @@
-import {BsSearch} from 'react-icons/bs'
+import './index.css'
 
 const FiltersGroup = props => {
   const renderRatingsFiltersList = () => {
@@ -29,8 +29,8 @@ const FiltersGroup = props => {
 
     return employmentTypesList.map(job => {
       const {updateOnChecked} = props
-      const onClickEmployeementItem = () =>
-        updateOnChecked(job.employmentTypeId)
+      const onClickEmployeementItem = event =>
+        updateOnChecked(job.employmentTypeId, event.target.checked)
       return (
         <li onClick={onClickEmployeementItem}>
           <label htmlFor={job.employmentTypeId}>{job.label}</label>
@@ -47,42 +47,10 @@ const FiltersGroup = props => {
     </>
   )
 
-  const onEnterSearchInput = event => {
-    const {enterSearchInput} = props
-    if (event.key === 'Enter') {
-      enterSearchInput()
-    }
-  }
-
-  const onChangeSearchInput = event => {
-    const {changeSearchInput} = props
-    changeSearchInput(event.target.value)
-  }
-
-  const renderSearchInput = () => {
-    const {searchInput} = props
-    return (
-      <div className="search-input-container">
-        <input
-          value={searchInput}
-          type="search"
-          className="search-input"
-          placeholder="Search"
-          onChange={onChangeSearchInput}
-          onKeyDown={onEnterSearchInput}
-        />
-        <button type="button" testid="searchButton">
-          <BsSearch className="search-icon" />
-        </button>
-      </div>
-    )
-  }
-
   const {clearFilters} = props
 
   return (
     <div className="filters-group-container">
-      {renderSearchInput()}
       {renderProductCategories()}
       {renderRatingsFilters()}
       <button

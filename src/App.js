@@ -11,7 +11,7 @@ import NotFoundRoute from './components/NotFoundRoute'
 import './App.css'
 
 const App = () => (
-  <>
+  <div className="bg">
     <Switch>
       <Route exact path="/login" component={LoginRoute} />
       <ProtectedRoute exact path="/" component={HomeRoute} />
@@ -20,7 +20,9 @@ const App = () => (
       <Route exact path="/not-found" component={NotFoundRoute} />
       <Redirect to="not-found" />
     </Switch>
-  </>
+  </div>
 )
 
 export default App
+
+// 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

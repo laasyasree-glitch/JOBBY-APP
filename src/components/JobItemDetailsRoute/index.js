@@ -1,5 +1,4 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
@@ -103,13 +102,18 @@ class JobItemDetailsRoute extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="loader">
+    // <div className="loader-container" testid="loader">
+    <div>
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
 
+  RetryButton = () => {
+    this.getProductData()
+  }
+
   renderFailureView = () => (
-    <div className="product-details-failure-view-container">
+    <div>
       <img
         alt="failure view"
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png "
@@ -117,11 +121,9 @@ class JobItemDetailsRoute extends Component {
       />
       <h1>Oops! Something Went Wrong</h1>
       <p>We cannot seem to find the page you are looking for</p>
-      <Link to="/jobs">
-        <button type="button" className="button">
-          Retry
-        </button>
-      </Link>
+      <button type="button" className="button" onClick={this.RetryButton}>
+        Retry
+      </button>
     </div>
   )
 

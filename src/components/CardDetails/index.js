@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom'
+import './index.css'
 
 const CardDetails = props => {
   const {itemDetails} = props
@@ -13,18 +14,22 @@ const CardDetails = props => {
     description,
   } = itemDetails
   return (
-    <Link to={`/jobs/${id}`}>
-      <li>
+    <div className="eachJob">
+      <Link to={`/jobs/${id}`} className="title">
         <img src={imageUrl} alt="website logo" />
         <h1>{title}</h1>
+      </Link>
+      <p>{rating}</p>
+      <div className="sub-alignment">
         <p>{packagePerAnnum}</p>
         <p>{location}</p>
-        <p>{rating}</p>
         <p>{employmentType}</p>
-        <h1>Description</h1>
-        <p>{description}</p>
-      </li>
-    </Link>
+      </div>
+      <hr />
+
+      <h1>Description</h1>
+      <p>{description}</p>
+    </div>
   )
 }
 
