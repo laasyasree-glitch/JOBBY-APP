@@ -17,3 +17,12 @@ hr {
   background-color: #ffffff;
   width: 100%;
 }
+.websiteLogo {
+  width: 70%;
+}
+.star {
+  color: #fbbf24;
+}
+p {
+  font-size: 15px;
+}
