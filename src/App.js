@@ -11,16 +11,14 @@ import NotFoundRoute from './components/NotFoundRoute'
 import './App.css'
 
 const App = () => (
-  <div className="bg">
-    <Switch>
-      <Route exact path="/login" component={LoginRoute} />
-      <ProtectedRoute exact path="/" component={HomeRoute} />
-      <ProtectedRoute exact path="/jobs" component={JobsRoute} />
-      <ProtectedRoute exact path="/jobs/:id" component={JobItemDetailsRoute} />
-      <Route exact path="/not-found" component={NotFoundRoute} />
-      <Redirect to="not-found" />
-    </Switch>
-  </div>
+  <Switch>
+    <Route exact path="/login" component={LoginRoute} />
+    <ProtectedRoute exact path="/" component={HomeRoute} />
+    <ProtectedRoute exact path="/jobs" component={JobsRoute} />
+    <ProtectedRoute exact path="/jobs/:id" component={JobItemDetailsRoute} />
+    <Route exact path="/not-found" component={NotFoundRoute} />
+    <Redirect to="not-found" />
+  </Switch>
 )
 
 export default App

@@ -2,6 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
+import './index.css'
+
 class LoginRoute extends Component {
   state = {
     username: '',
@@ -21,7 +23,7 @@ class LoginRoute extends Component {
   renderUsernameField = () => {
     const {username} = this.state
     return (
-      <div>
+      <div className="input-container">
         <label htmlFor="username">USERNAME</label>
         <input
           type="text"
@@ -37,7 +39,7 @@ class LoginRoute extends Component {
   renderPasswordField = () => {
     const {password} = this.state
     return (
-      <div>
+      <div className="input-container">
         <label htmlFor="password">PASSWORD</label>
         <input
           type="password"
@@ -87,18 +89,23 @@ class LoginRoute extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div>
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-          alt="website logo"
-        />
-        <form onSubmit={this.submitForm}>
-          <div>{this.renderUsernameField()}</div>
-          <div>{this.renderPasswordField()}</div>
-          <button type="submit">Login</button>
-        </form>
-
-        {showSubmitError && <p className="error-message">*{errorMsg}</p>}
+      <div className="main-container">
+        <div className="form">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+            alt="website logo"
+          />
+          <form onSubmit={this.submitForm}>
+            {this.renderUsernameField()}
+            {this.renderPasswordField()}
+            <div className="button-container">
+              <button className="button" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
+          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
+        </div>
       </div>
     )
   }

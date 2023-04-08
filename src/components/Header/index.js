@@ -19,7 +19,7 @@ const Header = props => {
           alt="website logo"
         />
       </Link>
-      <ul className="navbarDesign">
+      <ul className="navbarMainDesign">
         <li>
           <Link to="/">
             <button className="navItems" type="button">
@@ -34,12 +34,16 @@ const Header = props => {
             </button>
           </Link>
         </li>
+        <li>
+          <button
+            className="navItems logout-button"
+            type="button"
+            onClick={onClickLogout}
+          >
+            Logout
+          </button>
+        </li>
       </ul>
-      <div>
-        <button className="navItems" type="button" onClick={onClickLogout}>
-          Logout
-        </button>
-      </div>
     </div>
   )
 }
