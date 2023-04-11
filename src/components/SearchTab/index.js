@@ -31,7 +31,11 @@ const SearchTab = props => {
           onKeyDown={onEnterSearchInput}
         />
         {/* <button type="button" testid="searchButton" onClick={onClickButton}> */}
-        <button type="button" onClick={onClickButton}>
+        <button
+          type="button"
+          onClick={onClickButton}
+          className="search-container"
+        >
           <BsSearch className="search-icon" />
         </button>
       </div>

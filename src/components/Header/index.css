@@ -25,6 +25,9 @@
   justify-content: space-evenly;
   background-color: #272727;
   padding: 0.5%;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 .logout-button {
   align-self: center;

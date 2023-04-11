@@ -285,7 +285,11 @@ class JobsRoute extends Component {
     const {profileImageUrl, name, shortBio} = profileDetails
     return (
       <div className="profile-container">
-        <img src={profileImageUrl} alt="profile_image" />
+        <img
+          src={profileImageUrl}
+          alt="profile_image"
+          className="profile-image"
+        />
         <h1>{name}</h1>
         <p>{shortBio}</p>
         <hr />
@@ -341,8 +345,8 @@ class JobsRoute extends Component {
     return (
       <div className="bg-main">
         <Header />
-        <div className="main-container">
-          <div>
+        <div className="alignment-container">
+          <div className="filter-section">
             {this.renderProfile()}
             <FilterGroup
               employmentTypesList={employmentTypesList}
@@ -354,11 +358,12 @@ class JobsRoute extends Component {
               clearFilters={this.clearFilters}
             />
           </div>
-          <div className="alignment">
+          <div className="description-section">
             <SearchTab
               searchInput={search}
               changeSearchInput={this.changeSearchInput}
               enterSearchInput={this.enterSearchInput}
+              className="search"
             />
             {this.renderAllJobs()}
           </div>

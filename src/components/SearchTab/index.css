@@ -1,3 +1,21 @@
+* {
+  color: #ffffff;
+}
+
 .search-input-container {
+  width: 40vw;
+}
+.search-input {
+  width: 80%;
+  font-size: 20px;
+  background-image: transparent;
+}
+.search-container {
+  width: 20%;
+  background-color: black;
+  border: 0px;
+}
+.search-icon {
   width: 100%;
+  color: #ffffff;
 }

@@ -6,3 +6,8 @@
 .search-input {
   font-size: 20px;
 }
+.clear-filters-btn {
+  background-color: transparent;
+  border: 2px #ffffff solid;
+  cursor: pointer;
+}
