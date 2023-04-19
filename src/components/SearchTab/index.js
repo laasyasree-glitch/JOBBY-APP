@@ -21,7 +21,7 @@ const SearchTab = props => {
   const renderSearchInput = () => {
     const {searchInput} = props
     return (
-      <div className="search-input-container">
+      <div>
         <input
           value={searchInput}
           type="search"

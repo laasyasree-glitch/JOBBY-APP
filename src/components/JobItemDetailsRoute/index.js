@@ -4,6 +4,7 @@ import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 import SimilarJobsSection from '../SimilarJobsSection'
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -144,22 +145,33 @@ class JobItemDetailsRoute extends Component {
     return (
       <div>
         <div>
-          <img src={companyLogo} alt="job details company logo" />
-          <h1>{title}</h1>
-          <h1>Description</h1>
-          <p>{jobDescription}</p>
-          <p>{employmentType}</p>
-          <p>{location}</p>
-          <p>{packagePerAnnum}</p>
-          <p>{rating}</p>
-          <a href={companyWebsiteUrl}>Visit</a>
+          <div className="intro">
+            <div>
+              <img src={companyLogo} alt="job details company logo" />
+            </div>
+            <div>
+              <h1>{title}</h1>
+              <h1>Description</h1>
+              <p>{jobDescription}</p>
+              <p>{employmentType}</p>
+              <p>{location}</p>
+              <p>{packagePerAnnum}</p>
+              <p>{rating}</p>
+              <a href={companyWebsiteUrl}>Visit</a>
+            </div>
+          </div>
+
           <ul>
             <li key="skills">
               <h1>Skills</h1>
               <ul>
                 {skills.map(eachSkill => (
                   <li key={eachSkill.name}>
-                    <img src={eachSkill.imageUrl} alt={eachSkill.name} />
+                    <img
+                      className="skill-image"
+                      src={eachSkill.imageUrl}
+                      alt={eachSkill.name}
+                    />
                     <h1>{eachSkill.name}</h1>
                   </li>
                 ))}
@@ -204,10 +216,10 @@ class JobItemDetailsRoute extends Component {
 
   render() {
     return (
-      <>
+      <div className="bg">
         <Header />
         <div>{this.renderJobDetails()}</div>
-      </>
+      </div>
     )
   }
 }

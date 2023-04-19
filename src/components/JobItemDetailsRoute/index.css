@@ -1,0 +1,12 @@
+.bg {
+  background-color: #000000;
+}
+.intro {
+  margin-top: 100px;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.649);
+  border: 5px;
+}
+.skill-image {
+  width: 10%;
+}

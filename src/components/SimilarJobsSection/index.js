@@ -1,3 +1,5 @@
+import './index.css'
+
 const SimilarJobsSection = props => {
   const {details} = props
   const {
@@ -12,7 +14,11 @@ const SimilarJobsSection = props => {
   } = details
   return (
     <li>
-      <img src={companyLogoUrl} alt="similar job company logo" />
+      <img
+        className="life-image"
+        src={companyLogoUrl}
+        alt="similar job company logo"
+      />
       <h1>{title}</h1>
       <p>{employmentType}</p>
       <h1>Description</h1>

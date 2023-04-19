@@ -270,7 +270,7 @@ class JobsRoute extends Component {
     const {jobsList} = this.state
 
     return (
-      <div>
+      <div className="JobsList">
         <ul>
           {jobsList.map(item => (
             <CardDetails key={item.id} itemDetails={item} />
@@ -290,8 +290,8 @@ class JobsRoute extends Component {
           alt="profile_image"
           className="profile-image"
         />
-        <h1>{name}</h1>
-        <p>{shortBio}</p>
+        <h1 className="heading">{name}</h1>
+        <p className="para">{shortBio}</p>
         <hr />
       </div>
     )
@@ -348,6 +348,12 @@ class JobsRoute extends Component {
         <div className="alignment-container">
           <div className="filter-section">
             {this.renderProfile()}
+            <SearchTab
+              searchInput={search}
+              changeSearchInput={this.changeSearchInput}
+              enterSearchInput={this.enterSearchInput}
+              className="search"
+            />
             <FilterGroup
               employmentTypesList={employmentTypesList}
               salaryRangesList={salaryRangesList}
@@ -358,15 +364,8 @@ class JobsRoute extends Component {
               clearFilters={this.clearFilters}
             />
           </div>
-          <div className="description-section">
-            <SearchTab
-              searchInput={search}
-              changeSearchInput={this.changeSearchInput}
-              enterSearchInput={this.enterSearchInput}
-              className="search"
-            />
-            {this.renderAllJobs()}
-          </div>
+
+          {this.renderAllJobs()}
         </div>
       </div>
     )

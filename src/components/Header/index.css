@@ -26,8 +26,10 @@
   background-color: #272727;
   padding: 0.5%;
   position: fixed;
+  left: 0;
   width: 100%;
   top: 0;
+  z-index: 999;
 }
 .logout-button {
   align-self: center;
