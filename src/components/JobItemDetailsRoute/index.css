@@ -2,11 +2,28 @@
   background-color: #000000;
 }
 .intro {
-  margin-top: 100px;
+  margin-top: 5%;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.649);
-  border: 5px;
+  background-color: #272727;
+  padding: 2%;
+  border-radius: 10px;
 }
 .skill-image {
-  width: 10%;
+  width: 150px;
+  height: 120px;
+  margin: auto;
+}
+.skillsArrangement {
+  display: flex;
+  flex-wrap: wrap;
+}
+.fav {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 2%;
+}
+.logo {
+  width: 100%;
 }

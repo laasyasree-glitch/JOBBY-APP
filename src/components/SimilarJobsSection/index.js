@@ -13,7 +13,7 @@ const SimilarJobsSection = props => {
     rating,
   } = details
   return (
-    <li>
+    <li className="similar">
       <img
         className="life-image"
         src={companyLogoUrl}

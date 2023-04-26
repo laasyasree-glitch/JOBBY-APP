@@ -147,7 +147,11 @@ class JobItemDetailsRoute extends Component {
         <div>
           <div className="intro">
             <div>
-              <img src={companyLogo} alt="job details company logo" />
+              <img
+                src={companyLogo}
+                alt="job details company logo"
+                className="logo"
+              />
             </div>
             <div>
               <h1>{title}</h1>
@@ -161,10 +165,10 @@ class JobItemDetailsRoute extends Component {
             </div>
           </div>
 
-          <ul>
+          <ul className="fav">
             <li key="skills">
               <h1>Skills</h1>
-              <ul>
+              <ul className="skillsArrangement">
                 {skills.map(eachSkill => (
                   <li key={eachSkill.name}>
                     <img
@@ -178,12 +182,17 @@ class JobItemDetailsRoute extends Component {
               </ul>
             </li>
             <li key="life">
-              <h1>Life At Company</h1>
-              <p>{lifeAtCompany.description}</p>
-              <img src={lifeAtCompany.imageUrl} alt="life at company" />
+              <div className="intro">
+                <div>
+                  <h1>Life At Company</h1>
+                  <p>{lifeAtCompany.description}</p>
+                </div>
+                <img src={lifeAtCompany.imageUrl} alt="life at company" />
+              </div>
+
               <h1>Similar Jobs</h1>
               <div>
-                <ul>
+                <ul className="skillsArrangement">
                   {similarJobs.map(eachSimilarJob => (
                     <SimilarJobsSection
                       details={eachSimilarJob}

@@ -9,7 +9,7 @@ const FiltersGroup = props => {
       const onClickSalaryItem = () => updateOnClick(salary.salaryRangeId)
 
       return (
-        <li onClick={onClickSalaryItem}>
+        <li onClick={onClickSalaryItem} key={salary.salaryRangeId}>
           <label htmlFor={salary.salaryRangeId}>{salary.label}</label>
           <input type="radio" id={salary.salaryRangeId} name="group" />
         </li>
@@ -32,7 +32,7 @@ const FiltersGroup = props => {
       const onClickEmployeementItem = event =>
         updateOnChecked(job.employmentTypeId, event.target.checked)
       return (
-        <li onClick={onClickEmployeementItem}>
+        <li onClick={onClickEmployeementItem} key={job.employmentTypeId}>
           <label htmlFor={job.employmentTypeId}>{job.label}</label>
           <input type="checkbox" id={job.employmentTypeId} />
         </li>
