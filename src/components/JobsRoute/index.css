@@ -24,6 +24,7 @@
   padding: 2%;
   margin-top: 5%;
   position: relative;
+  min-height: 100vh;
 }
 
 .profile-container {

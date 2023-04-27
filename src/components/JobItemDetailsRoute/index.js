@@ -1,7 +1,9 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-
+import {MdLocationOn} from 'react-icons/md'
+import {AiFillStar} from 'react-icons/ai'
+import {BiLinkExternal} from 'react-icons/bi'
 import Header from '../Header'
 import SimilarJobsSection from '../SimilarJobsSection'
 import './index.css'
@@ -121,7 +123,7 @@ class JobItemDetailsRoute extends Component {
         className="failure-view-image"
       />
       <h1>Oops! Something Went Wrong</h1>
-      <p>We cannot seem to find the page you are looking for</p>
+      <p>we cannot seem to find the page you are looking for</p>
       <button type="button" className="button" onClick={this.RetryButton}>
         Retry
       </button>
@@ -131,7 +133,7 @@ class JobItemDetailsRoute extends Component {
   renderJobsDetailsView = () => {
     const {jobDetails, similarJobs} = this.state
     const {
-      companyLogo,
+      companyLogoUrl,
       jobDescription,
       companyWebsiteUrl,
       employmentType,
@@ -143,68 +145,80 @@ class JobItemDetailsRoute extends Component {
       title,
     } = jobDetails
     return (
-      <div>
-        <div>
-          <div className="intro">
-            <div>
+      <>
+        <div className="job-item-container">
+          <div className="first-part-container">
+            <div className="img-title-container">
               <img
-                src={companyLogo}
+                className="company-logo"
+                src={companyLogoUrl}
                 alt="job details company logo"
-                className="logo"
               />
+              <div className="title-rating-container">
+                <h1 className="title-heading">{title}</h1>
+                <div className="star-rating-container">
+                  <AiFillStar className="star-icon" />
+                  <p className="rating-text">{rating}</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h1>{title}</h1>
-              <h1>Description</h1>
-              <p>{jobDescription}</p>
-              <p>{employmentType}</p>
-              <p>{location}</p>
-              <p>{packagePerAnnum}</p>
-              <p>{rating}</p>
-              <a href={companyWebsiteUrl}>Visit</a>
+            <div className="location-package-container">
+              <div className="location-job-type-container">
+                <div className="location-icon-location-container">
+                  <MdLocationOn className="location-icon" />
+                  <p className="location">{location}</p>
+                </div>
+                <div className="employment-type-icon-employment-type-container">
+                  <p className="job-type">{employmentType}</p>
+                </div>
+              </div>
+              <div className="package-container">
+                <p className="package">{packagePerAnnum}</p>
+              </div>
             </div>
           </div>
-
-          <ul className="fav">
-            <li key="skills">
-              <h1>Skills</h1>
-              <ul className="skillsArrangement">
-                {skills.map(eachSkill => (
-                  <li key={eachSkill.name}>
-                    <img
-                      className="skill-image"
-                      src={eachSkill.imageUrl}
-                      alt={eachSkill.name}
-                    />
-                    <h1>{eachSkill.name}</h1>
-                  </li>
-                ))}
-              </ul>
-            </li>
-            <li key="life">
-              <div className="intro">
-                <div>
-                  <h1>Life At Company</h1>
-                  <p>{lifeAtCompany.description}</p>
-                </div>
-                <img src={lifeAtCompany.imageUrl} alt="life at company" />
-              </div>
-
-              <h1>Similar Jobs</h1>
-              <div>
-                <ul className="skillsArrangement">
-                  {similarJobs.map(eachSimilarJob => (
-                    <SimilarJobsSection
-                      details={eachSimilarJob}
-                      key={eachSimilarJob.id}
-                    />
-                  ))}
-                </ul>
-              </div>
-            </li>
+          <hr className="item-hr-line" />
+          <div className="second-part-container">
+            <div className="description-visit-container">
+              <h1 className="description-job-heading">Description</h1>
+              <a className="visit-anchor" href={companyWebsiteUrl}>
+                Visit <BiLinkExternal />
+              </a>
+            </div>
+            <p className="description-para">{jobDescription}</p>
+          </div>
+          <h1>Skills</h1>
+          <ul className="ul-job-details-container">
+            {skills.map(eachItem => (
+              <li className="li-job-details-container" key={eachItem.name}>
+                <img
+                  className="skill-img"
+                  src={eachItem.imageUrl}
+                  alt={eachItem.name}
+                />
+                <p>{eachItem.name}</p>
+              </li>
+            ))}
           </ul>
+          <div className="company-life-img-container">
+            <div className="life-heading-para-container">
+              <h1>Life at Company</h1>
+              <p>{lifeAtCompany.description}</p>
+            </div>
+            <img src={lifeAtCompany.imageUrl} alt="life at company" />
+          </div>
         </div>
-      </div>
+        <h1 className="similar-jobs-heading">Similar Jobs</h1>
+        <ul className="similar-jobs-ul-container">
+          {similarJobs.map(eachItem => (
+            <SimilarJobsSection
+              key={eachItem.id}
+              similarJobData={eachItem}
+              employmentType={employmentType}
+            />
+          ))}
+        </ul>
+      </>
     )
   }
 
