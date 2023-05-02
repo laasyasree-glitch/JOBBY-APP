@@ -11,7 +11,12 @@ const FiltersGroup = props => {
       return (
         <li onClick={onClickSalaryItem} key={salary.salaryRangeId}>
           <label htmlFor={salary.salaryRangeId}>{salary.label}</label>
-          <input type="radio" id={salary.salaryRangeId} name="group" />
+          <input
+            type="radio"
+            value={salary.salaryRangeId}
+            id={salary.salaryRangeId}
+            name="group"
+          />
         </li>
       )
     })
