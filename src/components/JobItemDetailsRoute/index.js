@@ -209,7 +209,7 @@ class JobItemDetailsRoute extends Component {
   )
 
   renderJobLoadingView = () => (
-    <div className="job-details-loader">
+    <div className="job-details-loader" testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )

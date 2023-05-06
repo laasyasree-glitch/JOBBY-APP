@@ -16,30 +16,31 @@ const CardDetails = props => {
     description,
   } = itemDetails
   return (
-    <div className="eachJob">
-      <div className="title">
-        <Link to={`/jobs/${id}`}>
+    <Link to={`/jobs/${id}`}>
+      <div className="eachJob">
+        <div className="title">
           <img src={imageUrl} alt="website logo" className="websiteLogo" />
-        </Link>
-        <div>
-          <h1>{title}</h1>
-          <div className="title">
-            <AiFillStar className="star" />
-            <p>{rating}</p>
+
+          <div>
+            <h1>{title}</h1>
+            <div className="title">
+              <AiFillStar className="star" />
+              <p>{rating}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="sub-alignment">
-        <p>{packagePerAnnum}</p>
-        <p>{location}</p>
-        <p>{employmentType}</p>
-      </div>
-      <hr />
+        <div className="sub-alignment">
+          <p>{packagePerAnnum}</p>
+          <p>{location}</p>
+          <p>{employmentType}</p>
+        </div>
+        <hr />
 
-      <h1>Description</h1>
-      <p>{description}</p>
-    </div>
+        <h1>Description</h1>
+        <p>{description}</p>
+      </div>
+    </Link>
   )
 }
 

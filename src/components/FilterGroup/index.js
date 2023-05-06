@@ -2,7 +2,7 @@ import './index.css'
 
 const FiltersGroup = props => {
   const renderRatingsFiltersList = () => {
-    const {salaryRangesList} = props
+    const {salaryRangesList, activeSalaryRangeId} = props
 
     return salaryRangesList.map(salary => {
       const {updateOnClick} = props
@@ -11,12 +11,23 @@ const FiltersGroup = props => {
       return (
         <li onClick={onClickSalaryItem} key={salary.salaryRangeId}>
           <label htmlFor={salary.salaryRangeId}>{salary.label}</label>
-          <input
-            type="radio"
-            value={salary.salaryRangeId}
-            id={salary.salaryRangeId}
-            name="group"
-          />
+          {activeSalaryRangeId === salary.salaryRangeId && (
+            <input
+              type="radio"
+              value={salary.salaryRangeId}
+              id={salary.salaryRangeId}
+              name="group"
+              defaultChecked
+            />
+          )}
+          {activeSalaryRangeId !== salary.salaryRangeId && (
+            <input
+              type="radio"
+              value={salary.salaryRangeId}
+              id={salary.salaryRangeId}
+              name="group"
+            />
+          )}
         </li>
       )
     })
@@ -30,7 +41,7 @@ const FiltersGroup = props => {
   )
 
   const renderCategoriesList = () => {
-    const {employmentTypesList} = props
+    const {employmentTypesList, activeJobId} = props
 
     return employmentTypesList.map(job => {
       const {updateOnChecked} = props
@@ -39,7 +50,12 @@ const FiltersGroup = props => {
       return (
         <li onClick={onClickEmployeementItem} key={job.employmentTypeId}>
           <label htmlFor={job.employmentTypeId}>{job.label}</label>
-          <input type="checkbox" id={job.employmentTypeId} />
+          {activeJobId.includes(job.employmentTypeId) && (
+            <input type="checkbox" id={job.employmentTypeId} defaultChecked />
+          )}
+          {!activeJobId.includes(job.employmentTypeId) && (
+            <input type="checkbox" id={job.employmentTypeId} />
+          )}
         </li>
       )
     })

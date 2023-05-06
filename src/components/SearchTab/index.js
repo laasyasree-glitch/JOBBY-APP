@@ -35,6 +35,7 @@ const SearchTab = props => {
           type="button"
           onClick={onClickButton}
           className="search-container"
+          testid="searchButton"
         >
           <BsSearch className="search-icon" />
         </button>
