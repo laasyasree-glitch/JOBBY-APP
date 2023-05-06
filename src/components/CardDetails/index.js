@@ -19,7 +19,9 @@ const CardDetails = props => {
     <Link to={`/jobs/${id}`}>
       <div className="eachJob">
         <div className="title">
-          <img src={imageUrl} alt="website logo" className="websiteLogo" />
+          <div>
+            <img src={imageUrl} alt="website logo" className="websiteLogo" />
+          </div>
 
           <div>
             <h1>{title}</h1>

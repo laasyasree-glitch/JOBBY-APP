@@ -17,12 +17,6 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-const profileApiStatusConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  failure: 'FAILURE',
-  inProgress: 'IN_PROGRESS',
-}
 const employmentTypesList = [
   {
     label: 'Full Time',
@@ -64,9 +58,7 @@ const salaryRangesList = [
 class JobsRoute extends Component {
   state = {
     jobsList: [],
-    profileDetails: [],
     apiStatus: apiStatusConstants.initial,
-    profileApiStatus: apiStatusConstants.initial,
     salaryRangeId: '',
     activeJobId: [],
     search: '',
@@ -74,22 +66,6 @@ class JobsRoute extends Component {
 
   componentDidMount() {
     this.getJobsList()
-    this.getProfileView()
-  }
-
-  renderProfile = () => {
-    const {profileApiStatus} = this.state
-
-    switch (profileApiStatus) {
-      case profileApiStatusConstants.success:
-        return this.renderProfileView()
-      case profileApiStatusConstants.failure:
-        return this.renderProfileFailureView()
-      case profileApiStatusConstants.inProgress:
-        return this.renderLoadingView()
-      default:
-        return null
-    }
   }
 
   renderAllJobs = () => {
@@ -112,12 +88,8 @@ class JobsRoute extends Component {
     this.getJobsList()
   }
 
-  onClickRetryProfileButton = () => {
-    this.getProfileView()
-  }
-
   renderSearchFailure = () => (
-    <div>
+    <div className="search-failure-view ">
       <img
         alt="no jobs"
         src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
@@ -133,43 +105,6 @@ class JobsRoute extends Component {
       </button>
     </div>
   )
-
-  getFormattedData = data => ({
-    profileDetails: data.profile_details,
-  })
-
-  getFormattedProfileData = data => ({
-    name: data.name,
-    profileImageUrl: data.profile_image_url,
-    shortBio: data.short_bio,
-  })
-
-  getProfileView = async () => {
-    const profileApiUrl = 'https://apis.ccbp.in/profile'
-    const jwtToken = Cookies.get('jwt_token')
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
-    const response2 = await fetch(profileApiUrl, options)
-    if (response2.ok === true) {
-      const data2 = await response2.json()
-      const updatedData22 = this.getFormattedData(data2)
-      const updatedData2 = this.getFormattedProfileData(
-        updatedData22.profileDetails,
-      )
-      this.setState({
-        profileDetails: updatedData2,
-        profileApiStatus: profileApiStatusConstants.success,
-      })
-    } else {
-      this.setState({
-        apiStatus: apiStatusConstants.failure,
-      })
-    }
-  }
 
   getJobsList = async () => {
     const {activeJobId, salaryRangeId, search} = this.state
@@ -244,16 +179,6 @@ class JobsRoute extends Component {
     </div>
   )
 
-  renderProfileFailureView = () => (
-    <button
-      type="button"
-      className="button"
-      onClick={this.onClickRetryProfileButton}
-    >
-      Retry
-    </button>
-  )
-
   updateOnClick = id => {
     this.setState({salaryRangeId: id}, this.getJobsList)
   }
@@ -280,25 +205,8 @@ class JobsRoute extends Component {
     )
   }
 
-  renderProfileView = () => {
-    const {profileDetails} = this.state
-    const {profileImageUrl, name, shortBio} = profileDetails
-    return (
-      <div className="profile-container">
-        <img
-          src={profileImageUrl}
-          alt="profile_image"
-          className="profile-image"
-        />
-        <h1 className="heading">{name}</h1>
-        <p className="para">{shortBio}</p>
-        <hr />
-      </div>
-    )
-  }
-
   renderLoadingView = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />{' '}
     </div>
   )
@@ -327,9 +235,7 @@ class JobsRoute extends Component {
     this.setState(
       {
         jobsList: [],
-        profileDetails: [],
         apiStatus: apiStatusConstants.initial,
-        profileApiStatus: apiStatusConstants.initial,
         salaryRangeId: '',
         activeJobId: [],
         search: '',
@@ -342,29 +248,30 @@ class JobsRoute extends Component {
     const {search, salaryRangeId, activeJobId} = this.state
 
     return (
-      <div className="bg-main">
+      <div>
         <Header />
-        <div className="alignment-container">
-          <div className="filter-section">
-            {this.renderProfile()}
-            <SearchTab
-              searchInput={search}
-              changeSearchInput={this.changeSearchInput}
-              enterSearchInput={this.enterSearchInput}
-              className="search"
-            />
-            <FilterGroup
-              employmentTypesList={employmentTypesList}
-              salaryRangesList={salaryRangesList}
-              activeJobId={activeJobId}
-              activeSalaryRangeId={salaryRangeId}
-              updateOnChecked={this.updateOnChecked}
-              updateOnClick={this.updateOnClick}
-              clearFilters={this.clearFilters}
-            />
-          </div>
+        <div className="bg-main">
+          <div className="alignment-container">
+            <div className="filter-section">
+              <SearchTab
+                searchInput={search}
+                changeSearchInput={this.changeSearchInput}
+                enterSearchInput={this.enterSearchInput}
+                className="search"
+              />
+              <FilterGroup
+                employmentTypesList={employmentTypesList}
+                salaryRangesList={salaryRangesList}
+                activeJobId={activeJobId}
+                activeSalaryRangeId={salaryRangeId}
+                updateOnChecked={this.updateOnChecked}
+                updateOnClick={this.updateOnClick}
+                clearFilters={this.clearFilters}
+              />
+            </div>
 
-          {this.renderAllJobs()}
+            {this.renderAllJobs()}
+          </div>
         </div>
       </div>
     )
