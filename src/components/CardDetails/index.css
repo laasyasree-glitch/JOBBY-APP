@@ -6,6 +6,9 @@
   padding: 2%;
   border-radius: 10px;
 }
+.link {
+  text-decoration: none !important;
+}
 .title {
   display: flex;
 }
@@ -20,9 +23,23 @@ hr {
 .websiteLogo {
   width: 70%;
 }
-.star {
-  color: #fbbf24;
-}
-p {
+.rating {
   font-size: 15px;
+}
+.heading {
+  font-size: 25px;
+  color: #ffffff !important;
+}
+
+.star-job-rating-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0;
+}
+
+.rating-text {
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 0;
+  margin-left: 5px;
 }

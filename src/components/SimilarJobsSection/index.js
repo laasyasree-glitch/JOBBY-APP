@@ -24,7 +24,7 @@ const SimilarJobsSection = props => {
         <div className="title-job-rating-container">
           <h1 className="title-job-heading">{title}</h1>
           <div className="star-job-rating-container">
-            <AiFillStar className="star-job-icon" />
+            <AiFillStar fill="#fbbf24" className="star-job-icon" />
             <p className="rating-job-text">{rating}</p>
           </div>
         </div>

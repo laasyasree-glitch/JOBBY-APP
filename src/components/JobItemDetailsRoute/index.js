@@ -117,7 +117,7 @@ class JobItemDetailsRoute extends Component {
                 <div className="title-rating-container">
                   <h1 className="title-heading">{title}</h1>
                   <div className="star-rating-container">
-                    <AiFillStar className="star-icon" />
+                    <AiFillStar fill="#fbbf24" />
                     <p className="rating-text">{rating}</p>
                   </div>
                 </div>

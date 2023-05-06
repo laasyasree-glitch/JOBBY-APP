@@ -13,7 +13,7 @@
   cursor: pointer;
   background-color: transparent;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 40px;
   border: 0px;
   margin: 5%;
 }
@@ -28,7 +28,7 @@
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 2; /* Set the z-index of the header to 2 */
+  z-index: 2;
 }
 .logout-button {
   align-self: center;
@@ -36,6 +36,7 @@
   color: #ffffff;
   padding: 5%;
   border-radius: 5px;
+  font-size: 30px;
 }
 .navbarMainDesign {
   display: flex;
@@ -103,7 +104,7 @@
 }
 .icon {
   color: white;
-  font-size: 50px;
+  font-size: 40px;
 }
 .dropDown {
   display: flex;

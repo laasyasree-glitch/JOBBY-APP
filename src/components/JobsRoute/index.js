@@ -114,9 +114,7 @@ class JobsRoute extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
     const x = Array.isArray(activeJobId) ? activeJobId.join(',') : ''
-    console.log(x)
     const jobsApiUrl = `https://apis.ccbp.in/jobs?employment_type=${x}&minimum_package=${salaryRangeId}&search=${search}`
-    console.log(jobsApiUrl)
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
